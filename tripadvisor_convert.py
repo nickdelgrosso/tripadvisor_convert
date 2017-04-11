@@ -4,7 +4,7 @@ import pandas as pd
 from os import path
 
 
-def parse_json(filename):
+def to_df(filename):
     """Return a Pandas DataFrame with Reviews from the JSON File given."""
 
     with open(filename) as f:
@@ -34,7 +34,8 @@ def parse_json(filename):
     return df
 
 
-def to_csv(json_filename, csv_filename):
+def to_csv(json_filename, csv_filename=''):
+    """Saves a CSV file from the JSON filename given"""
     if not csv_filename:
         csv_filename = path.basename(json_filename) + '.csv'
     df.to_csv(csv_filename)
@@ -42,6 +43,6 @@ def to_csv(json_filename, csv_filename):
 
 if __name__ == '__main__':
     filename = '73739.json'
-    df = parse_json(filename)
+    df = to_df(filename)
 
     print(df.head(2))
